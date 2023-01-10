@@ -30,8 +30,8 @@ export const authOptions = {
     }),
     // ...add more providers here
     PingOneProvider({
-    clientId: process.env.development.local.PINGONE_ID,
-    clientSecret: process.env.development.local.PINGONE_SECRET,
+    clientId: process.env.PINGONE_ID,
+    clientSecret: process.env.PINGONE_SECRET,
   })
   ],
 }
