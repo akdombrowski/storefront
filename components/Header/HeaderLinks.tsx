@@ -33,12 +33,12 @@ export default function HeaderLinks(props) {
           buttonText="Components"
           buttonProps={{
             className: classes.navLink,
-            color: "transparent"
+            color: "transparent",
           }}
           buttonIcon={Apps}
           dropdownList={[
-            <Link href="/components">
-              <a className={classes.dropdownLink}>All components</a>
+            <Link className={classes.dropdownLink} href="/components">
+              All components
             </Link>,
             <a
               href="https://creativetimofficial.github.io/nextjs-material-kit/#/documentation?ref=njsmk-navbar"
@@ -46,17 +46,14 @@ export default function HeaderLinks(props) {
               className={classes.dropdownLink}
             >
               Documentation
-            </a>
+            </a>,
           ]}
         />
       </ListItem>
       <ListItem className={classes.listItem}>
-        <Button
-          href="blog"
-          color="transparent"
-          className={classes.navLink}
-        >
-          <i className={classes.socialIcons + " fa fa-rss"} />Blog
+        <Button href="blog" color="transparent" className={classes.navLink}>
+          <i className={classes.socialIcons + " fa fa-rss"} />
+          Blog
         </Button>
       </ListItem>
       <ListItem className={classes.listItem}>

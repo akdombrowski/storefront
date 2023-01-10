@@ -75,12 +75,10 @@ export default function Components(props) {
         <SectionCompletedExamples />
         <SectionLogin />
         <GridItem md={12} className={classes.textCenter}>
-          <Link href="/login">
-            <a className={classes.link}>
-              <Button color="primary" size="lg" simple>
-                View Login Page
-              </Button>
-            </a>
+          <Link className={classes.link} href="/login">
+            <Button color="primary" size="lg" simple>
+              View Login Page
+            </Button>
           </Link>
         </GridItem>
         <SectionExamples />
