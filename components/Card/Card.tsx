@@ -26,19 +26,10 @@ export default function Card(props: CardProps) {
   if (className !== undefined) {
     cardClasses.concat(" " + className);
   }
-  if (session) {
-    return (
-      <div className={cardClasses} {...rest}>
-        {children}
-      </div>
-    );
-  }
-
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <div className={cardClasses} {...rest}>
+      {children}
+    </div>
   );
 }
 

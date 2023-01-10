@@ -14,8 +14,6 @@ import Drawer from "@material-ui/core/Drawer";
 // @material-ui/icons
 import Menu from "@material-ui/icons/Menu";
 
-import { useSession, signIn, signOut } from "next-auth/react";
-
 // core components
 import styles from "../../styles/jss/nextjs-material-kit/components/headerStyle";
 
@@ -24,7 +22,6 @@ const useStyles = makeStyles(styles);
 export default function Header(props: HeaderProps) {
   const classes = useStyles();
 
-  const { data: session } = useSession();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
     if (props.changeColorOnScroll) {
@@ -73,58 +70,49 @@ export default function Header(props: HeaderProps) {
     </Link>
   );
 
-  if (session) {
-    return (
-      <AppBar className={appBarClasses}>
-        <Toolbar className={classes.container}>
-          {leftLinks !== undefined ? brandComponent : null}
-          <div className={classes.flex}>
-            {leftLinks !== undefined ? (
-              <Hidden smDown implementation="css">
-                {leftLinks}
-              </Hidden>
-            ) : (
-              brandComponent
-            )}
-          </div>
-          <Hidden smDown implementation="css">
-            {rightLinks}
-          </Hidden>
-          <Hidden mdUp>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              onClick={handleDrawerToggle}
-            >
-              <Menu />
-            </IconButton>
-          </Hidden>
-        </Toolbar>
-        <Hidden mdUp implementation="js">
-          <Drawer
-            variant="temporary"
-            anchor={"right"}
-            open={mobileOpen}
-            classes={{
-              paper: classes.drawerPaper,
-            }}
-            onClose={handleDrawerToggle}
-          >
-            <div className={classes.appResponsive}>
-              {leftLinks}
-              {rightLinks}
-            </div>
-          </Drawer>
-        </Hidden>
-      </AppBar>
-    );
-  }
-
   return (
-    <>
-      Not signed in <br />
-      <button onClick={() => signIn()}>Sign in</button>
-    </>
+    <AppBar className={appBarClasses}>
+      <Toolbar className={classes.container}>
+        {leftLinks !== undefined ? brandComponent : null}
+        <div className={classes.flex}>
+          {leftLinks !== undefined ? (
+            <Hidden smDown implementation="css">
+              {leftLinks}
+            </Hidden>
+          ) : (
+            brandComponent
+          )}
+        </div>
+        <Hidden smDown implementation="css">
+          {rightLinks}
+        </Hidden>
+        <Hidden mdUp>
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerToggle}
+          >
+            <Menu />
+          </IconButton>
+        </Hidden>
+      </Toolbar>
+      <Hidden mdUp implementation="js">
+        <Drawer
+          variant="temporary"
+          anchor={"right"}
+          open={mobileOpen}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+          onClose={handleDrawerToggle}
+        >
+          <div className={classes.appResponsive}>
+            {leftLinks}
+            {rightLinks}
+          </div>
+        </Drawer>
+      </Hidden>
+    </AppBar>
   );
 }
 

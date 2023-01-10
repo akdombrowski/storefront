@@ -28,7 +28,8 @@ import SectionLogin from "../pages-sections/Components-Sections/SectionLogin";
 import SectionExamples from "../pages-sections/Components-Sections/SectionExamples";
 import SectionDownload from "../pages-sections/Components-Sections/SectionDownload";
 
-import styles from "../styles/jss/nextjs-material-kit/pages/components";
+import styles from "../styles/jss/nextjs-material-kit/pages/componentsSections/navbarsStyle";
+import { List, ListItem } from "@material-ui/core";
 
 const useStyles = makeStyles(styles);
 
@@ -37,7 +38,7 @@ export default function Components(props) {
   const { ...rest } = props;
   return (
     <div>
-      <Header
+      {/* <Header
         brand="NextJS Material Kit"
         rightLinks={<HeaderLinks />}
         fixed
@@ -47,7 +48,60 @@ export default function Components(props) {
           color: "white",
         }}
         {...rest}
+      /> */}
+
+      <Header
+        brand="Storefront"
+        rightLinks={
+          <List className={classes.list}>
+            <ListItem className={classes.listItem}>
+              <Button
+                href="#pablo"
+                className={classes.navLink}
+                onClick={(e) => e.preventDefault()}
+                color="transparent"
+              >
+                Discover
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Button
+                href="#pablo"
+                className={classes.navLink}
+                onClick={(e) => e.preventDefault()}
+                color="transparent"
+              >
+                Wishlist
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              {/* <Link href="/login">
+                <Button
+                  // href="/login"
+                  className={classes.registerNavLink}
+                  onClick={(e) => e.preventDefault()}
+                  color="rose"
+                  round
+                >
+                  Login/Register
+                </Button>
+              </Link> */}
+              <Link href="/login">
+                <Button
+                  className={classes.registerNavLink}
+                  color="primary"
+                  size="lg"
+                  color="rose"
+                  round
+                >
+                  Login/Register
+                </Button>
+              </Link>
+            </ListItem>
+          </List>
+        }
       />
+
       <Parallax image="/img/nextjs_header.jpg">
         <div className={classes.container}>
           <GridContainer>
