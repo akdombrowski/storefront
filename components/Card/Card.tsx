@@ -6,6 +6,8 @@ import classNames from "classnames";
 import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
+import { useSession, signIn, signOut } from "next-auth/react";
+
 // core components
 import styles from "../../styles/jss/nextjs-material-kit/components/cardStyle";
 
@@ -13,19 +15,30 @@ const useStyles = makeStyles(styles);
 
 export default function Card(props: CardProps) {
   const classes = useStyles();
+  const { data: session } = useSession();
   const { className, children, plain, carousel, ...rest } = props;
   const cardClasses = classNames({
     [classes.card]: true,
     [classes.cardPlain]: plain,
     [classes.cardCarousel]: carousel,
   });
-  if(className !== undefined) {
-    cardClasses.concat(" " + className)
+
+  if (className !== undefined) {
+    cardClasses.concat(" " + className);
   }
+  if (session) {
+    return (
+      <div className={cardClasses} {...rest}>
+        {children}
+      </div>
+    );
+  }
+
   return (
-    <div className={cardClasses} {...rest}>
-      {children}
-    </div>
+    <>
+      Not signed in <br />
+      <button onClick={() => signIn()}>Sign in</button>
+    </>
   );
 }
 
@@ -34,4 +47,4 @@ export interface CardProps {
   plain?: boolean;
   carousel?: boolean;
   children: ReactNode;
-};
+}
