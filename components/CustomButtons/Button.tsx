@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, MouseEvent, SyntheticEvent } from "react";
 // nodejs library to set properties for components
 // nodejs library that concatenates classes
 import classNames from "classnames";
@@ -17,6 +17,8 @@ const makeComponentStyles = makeStyles(() => ({
 
 const RegularButton = React.forwardRef((props: RegularButtonProp, ref: any) => {
   const {
+    id,
+    onClick,
     color,
     round,
     children,
@@ -47,13 +49,21 @@ const RegularButton = React.forwardRef((props: RegularButtonProp, ref: any) => {
     [className]: className,
   });
   return (
-    <Button {...rest} ref={ref} classes={{ root: btnClasses }}>
+    <Button
+      {...rest}
+      id={id}
+      onClick={onClick}
+      ref={ref}
+      classes={{ root: btnClasses }}
+    >
       {children}
     </Button>
   );
 });
 
 export interface RegularButtonProp {
+  id?: string;
+  onClick?: (event: SyntheticEvent<HTMLElement, Event>) => void;
   color:
     | "primary"
     | "info"

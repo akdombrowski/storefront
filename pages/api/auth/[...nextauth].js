@@ -1,13 +1,19 @@
-import NextAuth from "next-auth"
-import GithubProvider from "next-auth/providers/github"
+import NextAuth from "next-auth";
+import GithubProvider from "next-auth/providers/github";
 
 export const PingOneProvider = () => {
-  return ({
+  return {
     id: "pingone",
     name: "PingOne",
     type: "oauth",
-    wellKnown: "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/.well-known/openid-configuration",
-    authorization: { params: { scope: "openid email profile" } },
+    wellKnown:
+      "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/.well-known/openid-configuration",
+    authorization: {
+      url: "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/authorize",
+      params: { scope: "openid email profile" },
+    },
+    token:
+      "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/token",
     idToken: true,
     checks: ["pkce", "state"],
     profile(profile) {
@@ -18,8 +24,16 @@ export const PingOneProvider = () => {
         image: profile.picture,
       };
     },
-  });
-}
+    style: {
+      logo: "/logo-pingidentity.png",
+      logoDark: "/logo-pingidentity.png",
+      bg: "#fff",
+      bgDark: "#000",
+      text: "#000",
+      textDark: "#fff",
+    },
+  };
+};
 
 export const authOptions = {
   // Configure one or more authentication providers
@@ -30,10 +44,10 @@ export const authOptions = {
     }),
     // ...add more providers here
     PingOneProvider({
-    clientId: process.env.PINGONE_ID,
-    clientSecret: process.env.PINGONE_SECRET,
-  })
+      clientId: process.env.PINGONE_ID,
+      clientSecret: process.env.PINGONE_SECRET,
+    }),
   ],
-}
+};
 
-export default NextAuth(authOptions)
+export default NextAuth(authOptions);

@@ -19,6 +19,8 @@ import CardHeader from "../components/Card/CardHeader";
 import CardFooter from "../components/Card/CardFooter";
 import CustomInput from "../components/CustomInput/CustomInput";
 
+import { signIn } from "next-auth/react";
+
 import styles from "../styles/jss/nextjs-material-kit/pages/loginPage";
 
 const useStyles = makeStyles(styles);
@@ -30,6 +32,14 @@ export default function LoginPage(props) {
   }, 700);
   const classes = useStyles();
   const { ...rest } = props;
+
+  const handleSubmit = (e: React.SyntheticEvent<HTMLElement, Event>) => {
+    e.preventDefault();
+    console.log("id:", e.currentTarget.id);
+
+    signIn(e.target.id);
+  };
+
   return (
     <div>
       <Header
@@ -44,18 +54,19 @@ export default function LoginPage(props) {
         style={{
           backgroundImage: "url('/img/bg7.jpg')",
           backgroundSize: "cover",
-          backgroundPosition: "top center"
+          backgroundPosition: "top center",
         }}
       >
         <div className={classes.container}>
           <GridContainer justifyContent="center">
             <GridItem xs={12} sm={6} md={4}>
               <Card className={classes[cardAnimaton]}>
-                <form className={classes.form}>
+                <form className={classes.form} onSubmit={handleSubmit}>
                   <CardHeader color="primary" className={classes.cardHeader}>
                     <h4>Login</h4>
                     <div className={classes.socialLine}>
                       <Button
+                        id="twitter"
                         justIcon
                         href="#pablo"
                         target="_blank"
@@ -65,6 +76,7 @@ export default function LoginPage(props) {
                         <i className={"fab fa-twitter"} />
                       </Button>
                       <Button
+                        id="facebook"
                         justIcon
                         href="#pablo"
                         target="_blank"
@@ -74,6 +86,7 @@ export default function LoginPage(props) {
                         <i className={"fab fa-facebook"} />
                       </Button>
                       <Button
+                        id="google"
                         justIcon
                         href="#pablo"
                         target="_blank"
@@ -90,7 +103,7 @@ export default function LoginPage(props) {
                       labelText="First Name..."
                       id="first"
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
                       }}
                       inputProps={{
                         type: "text",
@@ -98,14 +111,14 @@ export default function LoginPage(props) {
                           <InputAdornment position="end">
                             <People className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
                       }}
                     />
                     <CustomInput
                       labelText="Email..."
                       id="email"
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
                       }}
                       inputProps={{
                         type: "email",
@@ -113,14 +126,14 @@ export default function LoginPage(props) {
                           <InputAdornment position="end">
                             <Email className={classes.inputIconsColor} />
                           </InputAdornment>
-                        )
+                        ),
                       }}
                     />
                     <CustomInput
                       labelText="Password"
                       id="pass"
                       formControlProps={{
-                        fullWidth: true
+                        fullWidth: true,
                       }}
                       inputProps={{
                         type: "password",
@@ -131,12 +144,18 @@ export default function LoginPage(props) {
                             </Icon>
                           </InputAdornment>
                         ),
-                        autoComplete: "off"
+                        autoComplete: "off",
                       }}
                     />
                   </CardBody>
                   <CardFooter className={classes.cardFooter}>
-                    <Button simple color="primary" size="lg">
+                    <Button
+                      id="pingone"
+                      onClick={handleSubmit}
+                      simple
+                      color="primary"
+                      size="lg"
+                    >
                       Get started
                     </Button>
                   </CardFooter>
