@@ -8,12 +8,15 @@ export const PingOneProvider = () => {
     type: "oauth",
     wellKnown:
       "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/.well-known/openid-configuration",
-    authorization: {
-      url: "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/authorize",
-      params: { scope: "openid email profile" },
-    },
-    token:
-      "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/token",
+    authorization: { params: { scope: "openid email profile" } },
+    clientId: process.env.PINGONE_ID,
+    clientSecret: process.env.PINGONE_SECRET,
+    // authorization: {
+    //   url: "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/authorize",
+    //   params: { scope: "openid email profile" },
+    // },
+    // token:
+    //   "https://auth.pingone.com/4e5491d5-74b6-4953-a3d1-c29f76f34d93/as/token",
     idToken: true,
     checks: ["pkce", "state"],
     profile(profile) {
@@ -43,10 +46,7 @@ export const authOptions = {
       clientSecret: process.env.GITHUB_SECRET,
     }),
     // ...add more providers here
-    PingOneProvider({
-      clientId: process.env.PINGONE_ID,
-      clientSecret: process.env.PINGONE_SECRET,
-    }),
+    PingOneProvider(),
   ],
 };
 

@@ -35,9 +35,9 @@ export default function LoginPage(props) {
 
   const handleSubmit = (e: React.SyntheticEvent<HTMLElement, Event>) => {
     e.preventDefault();
-    console.log("id:", e.currentTarget.id);
+    console.log("id:", e.currentTarget?.id);
 
-    signIn(e.target.id);
+    signIn(e.currentTarget?.id);
   };
 
   return (
@@ -156,7 +156,7 @@ export default function LoginPage(props) {
                       color="primary"
                       size="lg"
                     >
-                      Get started
+                      Login with PingOne
                     </Button>
                   </CardFooter>
                 </form>
