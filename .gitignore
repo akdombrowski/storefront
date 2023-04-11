@@ -27,3 +27,11 @@ yarn-error.log*
 /dist
 /.next
 pnpm-lock.yaml
+
+.yarn/*
+!.yarn/cache
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
