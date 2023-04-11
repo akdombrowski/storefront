@@ -1,12 +1,24 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Router from "next/router";
+import { signIn, signOut, useSession } from "next-auth/react";
+import LandingPage from "./landing";
+import Link from "next/link";
 
-export default class Index extends Component {
-  componentDidMount = () => {
-    Router.push("/components");
-  };
+const Index = () => {
+  const { data: session } = useSession();
 
-  render() {
-    return <div />;
-  }
-}
+  useEffect(() => {
+    if (session) {
+      Router.push("/components");
+    }
+  });
+
+  return (
+    <>
+      <button onClick={() => signIn()}>Sign in</button>
+      <LandingPage></LandingPage>
+    </>
+  );
+};
+
+export default Index;

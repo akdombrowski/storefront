@@ -14,6 +14,9 @@ import GridItem from "../components/Grid/GridItem";
 import Button from "../components/CustomButtons/Button";
 import HeaderLinks from "../components/Header/HeaderLinks";
 import Parallax from "../components/Parallax/Parallax";
+import Link from "next/link";
+
+import { List, ListItem } from "@material-ui/core";
 
 import styles from "../styles/jss/nextjs-material-kit/pages/landingPage";
 
@@ -32,16 +35,55 @@ export default function LandingPage(props) {
   return (
     <div>
       <Header
-        color="transparent"
-        routes={dashboardRoutes}
-        brand="NextJS Material Kit"
-        rightLinks={<HeaderLinks />}
-        fixed
-        changeColorOnScroll={{
-          height: 400,
-          color: "white"
-        }}
-        {...rest}
+        brand="Storefront"
+        rightLinks={
+          <List className={classes.list}>
+            <ListItem className={classes.listItem}>
+              <Button
+                href="#pablo"
+                className={classes.navLink}
+                onClick={(e) => e.preventDefault()}
+                color="transparent"
+              >
+                Discover
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              <Button
+                href="#pablo"
+                className={classes.navLink}
+                onClick={(e) => e.preventDefault()}
+                color="transparent"
+              >
+                Wishlist
+              </Button>
+            </ListItem>
+            <ListItem className={classes.listItem}>
+              {/* <Link href="/login">
+                <Button
+                  // href="/login"
+                  className={classes.registerNavLink}
+                  onClick={(e) => e.preventDefault()}
+                  color="rose"
+                  round
+                >
+                  Login/Register
+                </Button>
+              </Link> */}
+              <Link href="/login">
+                <Button
+                  className={classes.registerNavLink}
+                  color="primary"
+                  size="lg"
+                  color="rose"
+                  round
+                >
+                  Login/Register
+                </Button>
+              </Link>
+            </ListItem>
+          </List>
+        }
       />
       <Parallax filter responsive image="/img/landing-bg.jpg">
         <div className={classes.container}>
