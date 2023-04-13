@@ -75,17 +75,6 @@ export default function Components(props) {
               </Button>
             </ListItem>
             <ListItem className={classes.listItem}>
-              {/* <Link href="/login">
-                <Button
-                  // href="/login"
-                  className={classes.registerNavLink}
-                  onClick={(e) => e.preventDefault()}
-                  color="rose"
-                  round
-                >
-                  Login/Register
-                </Button>
-              </Link> */}
               <Link href="/login">
                 <Button
                   className={classes.registerNavLink}
