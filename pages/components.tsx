@@ -51,7 +51,7 @@ export default function Components(props) {
       /> */}
 
       <Header
-        brand="Storefront"
+        brand="Kaptcha Me"
         rightLinks={
           <List className={classes.list}>
             <ListItem className={classes.listItem}>

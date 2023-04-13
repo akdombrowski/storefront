@@ -35,7 +35,7 @@ export default function LandingPage(props) {
   return (
     <div>
       <Header
-        brand="Storefront"
+        brand="Kaptcha Me"
         rightLinks={
           <List className={classes.list}>
             <ListItem className={classes.listItem}>
