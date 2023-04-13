@@ -78,7 +78,7 @@ export default function LandingPage(props) {
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
-              <h1 className={classes.title}>You're not a bot. Prove it.</h1>
+              <h1 className={classes.title}>You're not a bot. Prove it. Without the pain and suffering.</h1>
               <h3>Who doesn't love image challenge CAPTCHAs? Just kidding.</h3>
               <h4>
                 Everyone is pretty much sick of CAPTCHAs that ask you to choose
