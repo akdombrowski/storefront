@@ -31,24 +31,16 @@ import SectionDownload from "../pages-sections/Components-Sections/SectionDownlo
 import styles from "../styles/jss/nextjs-material-kit/pages/componentsSections/navbarsStyle";
 import { List, ListItem } from "@material-ui/core";
 
+import { signIn, signOut, useSession } from "next-auth/react";
+
 const useStyles = makeStyles(styles);
 
 export default function Components(props) {
+  const { data: session } = useSession();
   const classes = useStyles();
   const { ...rest } = props;
   return (
     <div>
-      {/* <Header
-        brand="NextJS Material Kit"
-        rightLinks={<HeaderLinks />}
-        fixed
-        color="transparent"
-        changeColorOnScroll={{
-          height: 400,
-          color: "white",
-        }}
-        {...rest}
-      /> */}
 
       <Header
         brand="Kaptcha Me"
@@ -91,7 +83,7 @@ export default function Components(props) {
         }
       />
 
-      <Parallax image="/img/nextjs_header.jpg">
+      <Parallax image="/img/doubleTroubleActionShot.jpg">
         <div className={classes.container}>
           <GridContainer>
             <GridItem>
